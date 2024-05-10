@@ -1,0 +1,2 @@
+# ProgramrendszerekFejlesztese
+Repository Programrendszerek fejlesztése tárgyhoz
