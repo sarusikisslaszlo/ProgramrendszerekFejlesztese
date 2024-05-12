@@ -34,6 +34,8 @@ export class FinancialGoalDialogComponent implements OnInit {
       this.financialGoalService.add(this.financialGoalForm.value).subscribe({
         next: (data) => {
           console.log(data);
+          this.dialogRef.close();
+          window.location.reload();
         }, error: (err) => {
           console.log(err);
         }

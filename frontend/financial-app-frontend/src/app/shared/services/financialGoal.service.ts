@@ -22,4 +22,12 @@ export class FinancialGoalService {
 
     return this.http.post('http://localhost:5001/app/financial-goal/add', body, {headers: headers, withCredentials: true});
   }
+
+  getAll() {
+    return this.http.get<FinancialGoal[]>('http://localhost:5001/app/getAllFinancialGoal', {withCredentials: true});
+  }
+
+  delete(id: string) {
+    return this.http.delete('http://localhost:5001/app/deleteFinancialGoal?id=' + id, {withCredentials: true});
+  }
 }

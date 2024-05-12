@@ -22,4 +22,12 @@ export class SavingsGoalService {
 
     return this.http.post('http://localhost:5001/app/savings-goal/add', body, {headers: headers, withCredentials: true});
   }
+
+  getAll() {
+    return this.http.get<SavingsGoal[]>('http://localhost:5001/app/getAllSavingsGoal', {withCredentials: true});
+  }
+
+  delete(id: string) {
+    return this.http.delete('http://localhost:5001/app/deleteSavingsGoal?id=' + id, {withCredentials: true});
+  }
 }

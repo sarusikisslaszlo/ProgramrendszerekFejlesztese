@@ -1,6 +1,6 @@
 <div class="content-wrapper bg-color">
     <div style="display: flex; justify-content: end;">
-        <div class="buttons">
+        <div class="buttons" style="padding-top: 10px; padding-right: 10px;">
             <button style="width: 200px;" type="reset" (click)="logout()">Logout</button>
         </div>
     </div>
@@ -16,12 +16,12 @@
             <div class="expenses-card">
                 <span class="card-text">Pézügyi célok</span>
                 <div style="margin-top: 1rem;">
-                    <div style="display: flex; align-items: center;">
-                        <div style="padding-right: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">Megtakarítások</div>
+                    <div *ngFor="let item of financialGoalList" style="display: flex; align-items: center; margin-top: 15px;">
+                        <div style="padding-right: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">{{ item.name }}</div>
                         <div style="flex: 1;">
                             <div style="background: linear-gradient(to right, green 0%, #52ae30 70%, rgba(128, 128, 128, 0.5) 70%, rgba(128, 128, 128, 0.5) 100%); height: 10px; align-self: center; border-radius: 16px;"></div>
                         </div>
-                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">3.000.000 Ft</div>
+                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">{{ item.amount | currency:'HUF ':'symbol':'1.0-0' }}</div>
                     </div>
                 </div>
             </div>
@@ -30,21 +30,12 @@
             <div class="expenses-card">
                 <span class="card-text">Megtakarítási tervek</span>
                 <div style="margin-top: 1rem;">
-                    <div style="display: flex; align-items: center; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">
-                        <div style="padding-right: 20px;">Autó</div>
+                    <div *ngFor="let item of savingsGoalList" style="display: flex; align-items: center; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif; margin-top: 15px;">
+                        <div style="padding-right: 20px;">{{ item.name }}</div>
                         <div style="flex: 1;">
                             <div style="background: linear-gradient(to right, green 0%, #52ae30 70%, rgba(128, 128, 128, 0.5) 70%, rgba(128, 128, 128, 0.5) 100%); height: 10px; align-self: center; border-radius: 16px;"></div>
                         </div>
-                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">3.000.000 Ft</div>
-                    </div>
-                </div>
-                <div style="margin-top: 1rem;">
-                    <div style="display: flex; align-items: center; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">
-                        <div style="padding-right: 20px;">Telefon</div>
-                        <div style="flex: 1;">
-                            <div style="background: linear-gradient(to right, green 0%, #52ae30 30%, rgba(128, 128, 128, 0.5) 30%, rgba(128, 128, 128, 0.5) 100%); height: 10px; align-self: center; border-radius: 16px;"></div>
-                        </div>
-                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">500.000 Ft</div>
+                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">{{ item.amount | currency:'HUF ':'symbol':'1.0-0' }}</div>
                     </div>
                 </div>
             </div>
@@ -52,20 +43,16 @@
         <div class="mt-5 mb-5" style="display: flex; justify-content: center;">
             <div class="expenses-card-small">
                 <span class="card-text">Bevételek és kiadások nyomon követése</span>
-                <div>
+                <div *ngFor="let item of expenseIncomeList">
                     <h4>
                         <button class="expense-item-button">
-                            <span>Étel rendelés</span>
-                            <span style="color: rgb(232, 13, 13);">- 2.000 Ft</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                        </button>
-                    </h4>
-                </div>
-                <div>
-                    <h4>
-                        <button class="expense-item-button">
-                            <span>Fizetés</span>
-                            <span style="color: #52ae30;">+ 200.000 Ft</span>
+                            <span>{{ item.name }}</span>
+                            <ng-container *ngIf="item.type === 'INCOME'; else expenseColor">
+                                <span style="color: #52ae30;">+{{ item.amount | currency:' ' :'symbol':'1.0-0' }} Ft</span>
+                            </ng-container>
+                            <ng-template #expenseColor>
+                                <span style="color: rgb(232, 13, 13);">-{{ item.amount | currency:' ':'symbol':'1.0-0' }} Ft</span>
+                            </ng-template>
                             <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                         </button>
                     </h4>
@@ -75,7 +62,34 @@
     </div>
 </div>
 <div id="chat-client">
-    <button class="chat-button">
+    <div *ngIf="isChatOpen" style="height: 90vh;">
+        <div style="border-radius: 32px 32px 8px 32px; bottom: auto; left: auto; max-height: 100%; max-width: 456px; min-width: 456px; position: relative; right: auto; top: auto; background-color: #fff; box-shadow: 0 16px 32px 0 rgba(54, 57, 66, .25); display: flex; flex: 1 1 auto; flex-direction: column; height: 100%; margin-bottom: 8px; width: 100%; z-index: 1;">
+            <div style="padding: 0 16px 0 16px; align-items: center; background-color: #fff; border-bottom-style: solid; border-color: #d3d9e6; border-radius: 28px 28px 0 0; border-width: 1px; display: flex; height: 56px; justify-content: space-between; padding: 0 16px; position: relative; z-index: 11;">
+                <div style="align-items: center; display: flex; flex-direction: row;">
+                    <h2 style="    color: #1b82e3; font-size: 18px; font-weight: 600; line-height: 24px; margin: 0 5px 0 0;">Chat</h2>
+                </div>
+                <div>
+                    <button (click)="toggleChat()" style="align-items: center; background-color: transparent; border: none; color: #1b82e3; cursor: pointer; display: flex; height: 40px; justify-content: center; min-height: 40px; min-width: 40px; padding: 0; width: 40px;border-radius: 24px;" class="button-without-decoration">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#1b82e3"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div style="flex: 1; overflow-y: auto; padding: 16px; min-height: 150px;">
+
+            </div>
+            <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+                <div style="overflow: visible;background-color: transparent; border-top: 1px solid #d3d9e6; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; height: auto; max-height: 500px; min-height: 64px; position: relative; overflow-x: auto;">
+                    <div style="padding-bottom: 8px; align-items: center; display: flex; flex-direction: row; max-height: 200px; min-height: 40px; padding-left: 16px; padding-top: 8px;">
+                        <textarea formControlName="message" style="border-radius: 0; background-color: #fff; border: none; color: #151617; font-size: 16px; height: 24px; line-height: 16px; margin-right: 8px; min-height: 24px; overflow: hidden; padding: 2px; resize: none; width: 100%;" placeholder="Ide írhatja üzenetét."></textarea>
+                        <button class="button-without-decoration" style="width: 30%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1b82e3"><path d="M120-160v-640l760 320-760 320Zm66.67-102 520.66-218-520.66-220v158.67L428-480l-241.33 60v158Zm0 0v-438 438Z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button *ngIf="!isChatOpen" class="chat-button" (click)="toggleChat()">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M280-240q-17 0-28.5-11.5T240-280v-80h520v-360h80q17 0 28.5 11.5T880-680v600L720-240H280ZM80-280v-560q0-17 11.5-28.5T120-880h520q17 0 28.5 11.5T680-840v360q0 17-11.5 28.5T640-440H240L80-280Zm520-240v-280H160v280h440Zm-440 0v-280 280Z"/></svg>
         <div style="padding-left: 10px;">Chat</div>
     </button>

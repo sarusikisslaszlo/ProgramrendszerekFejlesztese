@@ -21,10 +21,20 @@
                     <input formControlName="amount" class="expense-input" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="position: relative;">
                 <label class="input-label">Tipus</label>
-                <div class="input-wrapper">
-                    <input formControlName="type" class="expense-input" />
+                <div class="input-wrapper" style="position: relative;">
+                    <button style="display: flex; align-items: center; background-color: #fff; color: #1b1f27; font: 700 16px Source Sans Pro, sans-serif; justify-content: space-between; position: relative; overflow: hidden; z-index: 13;" class="expense-input" (click)="toggleTypeDropdown()">
+                        <span>{{ selectedType || 'Kérjük válasszon' }}</span>
+                        <svg style="padding-right: 10px;" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                    </button>
+                    <div *ngIf="isTypeDropdownOpen" class="dropdown" style="background-color: #fff; border-radius: 24px; border-top: 0; box-sizing: border-box; max-width: 296px; overflow: hidden; position: absolute; top: 0; width: 100%; z-index: 12; box-shadow: 0 0 0 2px #52ae30, 0 16px 48px rgba(73, 92, 136, .15);">
+                        <ul style="margin: 56px 0 0; max-height: 230px; outline: none; overflow-x: hidden; overflow-y: auto; padding: 0 8px 10px; list-style: none;">
+                            <li class="list-element" style="border-radius: 16px; color: #1b1f27; font: 16px / 1.5 Source Sans Pro, sans-serif; overflow: hidden; padding: 8px 16px; text-overflow: ellipsis;" (click)="selectType('Bevétel')">Bevétel</li>
+                            <li class="list-element" style="border-radius: 16px; color: #1b1f27; font: 16px / 1.5 Source Sans Pro, sans-serif; overflow: hidden; padding: 8px 16px; text-overflow: ellipsis;" (click)="selectType('Kiadás')">Kiadás</li>
+                        </ul>
+                        <!-- Add more options as needed -->
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -33,16 +43,34 @@
                     <input formControlName="deadline" class="expense-input" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="position: relative;">
                 <label class="input-label">Pénzügyi cél</label>
-                <div class="input-wrapper">
-                    <input formControlName="financialGoal" class="expense-input" />
+                <div class="input-wrapper" style="position: relative;">
+                    <button style="display: flex; align-items: center; background-color: #fff; color: #1b1f27; font: 700 16px Source Sans Pro, sans-serif; justify-content: space-between; position: relative; overflow: hidden; z-index: 11;" class="expense-input" (click)="toggleFinancialDropdown()">
+                        <span>{{ selectedFinancialType || 'Kérjük válasszon' }}</span>
+                        <svg style="padding-right: 10px;" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                    </button>
+                    <div *ngIf="isFinancialDropdownOpen" class="dropdown" style="background-color: #fff; border-radius: 24px; border-top: 0; box-sizing: border-box; max-width: 296px; overflow: hidden; position: absolute; top: 0; width: 100%; z-index: 10; box-shadow: 0 0 0 2px #52ae30, 0 16px 48px rgba(73, 92, 136, .15);">
+                        <ul style="margin: 56px 0 0; max-height: 230px; outline: none; overflow-x: hidden; overflow-y: auto; padding: 0 8px 10px; list-style: none;">
+                            <li *ngFor="let financialGoal of financialGoals" class="list-element" style="border-radius: 16px; color: #1b1f27; font: 16px / 1.5 Source Sans Pro, sans-serif; overflow: hidden; padding: 8px 16px; text-overflow: ellipsis;" (click)="selectFinancialType(financialGoal)">{{ financialGoal.name }}</li>
+                        </ul>
+                        <!-- Add more options as needed -->
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="position: relative;">
                 <label class="input-label">Megtakarítási cél</label>
-                <div class="input-wrapper">
-                    <input formControlName="savingsGoal" class="expense-input" />
+                <div class="input-wrapper" style="position: relative;">
+                    <button style="display: flex; align-items: center; background-color: #fff; color: #1b1f27; font: 700 16px Source Sans Pro, sans-serif; justify-content: space-between; position: relative; overflow: hidden; z-index: 1;" class="expense-input" (click)="toggleSavingsDropdown()">
+                        <span>{{ selectedSavingsType || 'Kérjük válasszon' }}</span>
+                        <svg style="padding-right: 10px;" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                    </button>
+                    <div *ngIf="isSavingsDropdownOpen" class="dropdown" style="background-color: #fff; border-radius: 24px; border-top: 0; box-sizing: border-box; max-width: 296px; overflow: hidden; position: absolute; top: 0; width: 100%; z-index: 0; box-shadow: 0 0 0 2px #52ae30, 0 16px 48px rgba(73, 92, 136, .15);">
+                        <ul style="margin: 56px 0 0; max-height: 230px; outline: none; overflow-x: hidden; overflow-y: auto; padding: 0 8px 10px; list-style: none;">
+                            <li *ngFor="let savingsGoal of savingsGoals" class="list-element" style="border-radius: 16px; color: #1b1f27; font: 16px / 1.5 Source Sans Pro, sans-serif; overflow: hidden; padding: 8px 16px; text-overflow: ellipsis;" (click)="selectSavingsType(savingsGoal)">{{ savingsGoal.name }}</li>
+                        </ul>
+                        <!-- Add more options as needed -->
+                    </div>
                 </div>
             </div>
             <div style="display: flex; justify-content: center; margin-top: 3rem;">

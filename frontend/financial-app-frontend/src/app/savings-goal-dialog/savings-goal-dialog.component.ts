@@ -34,6 +34,8 @@ export class SavingsGoalDialogComponent implements OnInit {
       this.savingsGoalService.add(this.savingsGoalForm.value).subscribe({
         next: (data) => {
           console.log(data);
+          this.dialogRef.close();
+          window.location.reload();
         }, error: (err) => {
           console.log(err);
         }

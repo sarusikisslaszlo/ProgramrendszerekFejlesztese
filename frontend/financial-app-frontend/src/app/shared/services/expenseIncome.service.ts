@@ -25,4 +25,12 @@ export class ExpenseIncomeService {
 
     return this.http.post('http://localhost:5001/app/expense-income/add', body, {headers: headers, withCredentials: true});
   }
+
+  getAll() {
+    return this.http.get<ExpenseIncome[]>('http://localhost:5001/app/getAllExpenseIncome', {withCredentials: true});
+  }
+
+  delete(id: string) {
+    return this.http.delete('http://localhost:5001/app/deleteExpenseIncome?id=' + id, {withCredentials: true});
+  }
 }

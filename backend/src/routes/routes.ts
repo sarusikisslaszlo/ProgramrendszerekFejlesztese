@@ -4,6 +4,8 @@ import { PassportStatic } from 'passport';
 import { User } from '../model/User';
 import { FinancialGoal } from '../model/FinancialGoal';
 import { SavingsGoal } from '../model/SavingsGoal';
+import { ExpenseIncome } from '../model/IncomeExpense';
+import { Message } from '../model/Message';
 
 export const configureRoutes = (passport: PassportStatic, router: Router): Router => {
 
@@ -118,6 +120,49 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
         }
     });
 
+    router.get('/getAllSavingsGoal', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const query = SavingsGoal.find();
+            query.then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error.');
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.get('/getAllFinancialGoal', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const query = FinancialGoal.find();
+            query.then(data => {
+                console.log(data);
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error.');
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.get('/getAllExpenseIncome', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const query = ExpenseIncome.find();
+            query.then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error.');
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
     router.get('/checkAuth', (req: Request, res: Response) => {
         if (req.isAuthenticated()) {
             res.status(200).send(true);
@@ -159,6 +204,88 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
             res.status(500).send('User is not logged in.');
         }
     });
+
+    router.post('/expense-income/add', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const name = req.body.name;
+            const amount = req.body.amount;
+            const deadline = req.body.deadline;
+            const user = req.user;
+            const financialGoal = req.body.financialGoal;
+            const savingsGoal = req.body.savingsGoal;
+            const type = req.body.type == "Bevétel" ? "INCOME" : "EXPENSE";
+            const expenseIncome = new ExpenseIncome({ name: name, amount: amount, type: type, deadline: deadline, user: user, financialGoal: financialGoal, savingsGoal: savingsGoal });
+            expenseIncome.save().then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                res.status(500).send(error);
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.delete('/deleteFinancialGoal', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.query.id;
+            const query = FinancialGoal.deleteOne({ _id: id });
+            query.then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error.');
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.delete('/deleteSavingsGoal', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.query.id;
+            const query = SavingsGoal.deleteOne({ _id: id });
+            query.then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error.');
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.delete('/deleteExpenseIncome', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const id = req.query.id;
+            const query = ExpenseIncome.deleteOne({ _id: id });
+            query.then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                console.log(error);
+                res.status(500).send('Internal server error.');
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
+    router.post('/send-message', (req: Request, res: Response) => {
+        if (req.isAuthenticated()) {
+            const from = req.user;
+            const to = req.body.to;
+            const message = req.body.message;
+            const messageObject = new Message({ from: from, to: to, message: message });
+            messageObject.save().then(data => {
+                res.status(200).send(data);
+            }).catch(error => {
+                res.status(500).send(error);
+            })
+        } else {
+            res.status(500).send('User is not logged in.');
+        }
+    });
+
 
     return router;
 }

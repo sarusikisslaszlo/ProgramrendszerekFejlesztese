@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ManageExpensesComponent } from './manage-expenses/manage-expenses.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [RouterOutlet,
     DashboardComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ManageExpensesComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

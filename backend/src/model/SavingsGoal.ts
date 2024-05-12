@@ -1,7 +1,7 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 import { IUser } from './User';
 
-interface ISavingsGoal extends Document {
+export interface ISavingsGoal extends Document {
     name: string;
     amount: number;
     deadline: Date;
