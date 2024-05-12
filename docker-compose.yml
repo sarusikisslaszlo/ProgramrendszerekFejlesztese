@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "5001:5001"
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/financial-app-frontend/Dockerfile
+    ports:
+      - "4200:4200"
