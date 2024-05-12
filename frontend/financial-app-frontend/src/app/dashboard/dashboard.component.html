@@ -1,0 +1,82 @@
+<div class="content-wrapper bg-color">
+    <div style="display: flex; justify-content: end;">
+        <div class="buttons">
+            <button style="width: 200px;" type="reset" (click)="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="mt-5" style="display: flex; width: 100%; justify-content: center;">
+            <div style="display: flex; justify-content: space-between; width: 70%;">
+                <button style="width: auto;" type="submit" class="general-button" (click)="navigate('/manage-expenses')">Bevételek / Kiadások kezelése</button>
+                <button style="width: auto;" type="submit" class="general-button" (click)="navigate('/financial-goals')">Pénzügyi célok kezelése</button>
+                <button style="width: auto;" type="submit" class="general-button" (click)="navigate('/savings-goals')">Megtakarítási tervek kezelése</button>
+            </div>
+        </div>
+        <div class="mt-5" style="display: flex; justify-content: center;">
+            <div class="expenses-card">
+                <span class="card-text">Pézügyi célok</span>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; align-items: center;">
+                        <div style="padding-right: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">Megtakarítások</div>
+                        <div style="flex: 1;">
+                            <div style="background: linear-gradient(to right, green 0%, #52ae30 70%, rgba(128, 128, 128, 0.5) 70%, rgba(128, 128, 128, 0.5) 100%); height: 10px; align-self: center; border-radius: 16px;"></div>
+                        </div>
+                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">3.000.000 Ft</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5" style="display: flex; justify-content: center;">
+            <div class="expenses-card">
+                <span class="card-text">Megtakarítási tervek</span>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; align-items: center; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">
+                        <div style="padding-right: 20px;">Autó</div>
+                        <div style="flex: 1;">
+                            <div style="background: linear-gradient(to right, green 0%, #52ae30 70%, rgba(128, 128, 128, 0.5) 70%, rgba(128, 128, 128, 0.5) 100%); height: 10px; align-self: center; border-radius: 16px;"></div>
+                        </div>
+                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">3.000.000 Ft</div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; align-items: center; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">
+                        <div style="padding-right: 20px;">Telefon</div>
+                        <div style="flex: 1;">
+                            <div style="background: linear-gradient(to right, green 0%, #52ae30 30%, rgba(128, 128, 128, 0.5) 30%, rgba(128, 128, 128, 0.5) 100%); height: 10px; align-self: center; border-radius: 16px;"></div>
+                        </div>
+                        <div style="padding-left: 20px; font-weight: 700; font: 16px / 1.5 Source Sans Pro, sans-serif;">500.000 Ft</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 mb-5" style="display: flex; justify-content: center;">
+            <div class="expenses-card-small">
+                <span class="card-text">Bevételek és kiadások nyomon követése</span>
+                <div>
+                    <h4>
+                        <button class="expense-item-button">
+                            <span>Étel rendelés</span>
+                            <span style="color: rgb(232, 13, 13);">- 2.000 Ft</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        </button>
+                    </h4>
+                </div>
+                <div>
+                    <h4>
+                        <button class="expense-item-button">
+                            <span>Fizetés</span>
+                            <span style="color: #52ae30;">+ 200.000 Ft</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#52ae30"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        </button>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="chat-client">
+    <button class="chat-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M280-240q-17 0-28.5-11.5T240-280v-80h520v-360h80q17 0 28.5 11.5T880-680v600L720-240H280ZM80-280v-560q0-17 11.5-28.5T120-880h520q17 0 28.5 11.5T680-840v360q0 17-11.5 28.5T640-440H240L80-280Zm520-240v-280H160v280h440Zm-440 0v-280 280Z"/></svg>
+        <div style="padding-left: 10px;">Chat</div>
+    </button>
+</div>

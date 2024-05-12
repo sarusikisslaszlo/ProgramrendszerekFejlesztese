@@ -1,0 +1,55 @@
+<div class="content-wrapper bg-color">
+    <div style="display: flex; justify-content: end;">
+        <div class="buttons">
+            <button style="width: 200px;" type="reset" (click)="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="mt-5" style="display: flex; width: 100%; justify-content: center;">
+            <div style="display: flex; justify-content: space-between; width: 70%;">
+                <button style="width: auto;" type="submit" class="general-button" (click)="goBack()">Vissza a főoldalra</button>
+            </div>
+        </div>
+        <div class="mt-5" style="display: flex; justify-content: center;">
+            <div class="expenses-card">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <span class="card-text">Pénzügyi célok</span>
+                    </div>
+                     <div>
+                        <button class="button-without-decoration" (click)="openDialog()">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#52ae30">
+                            <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Név</th>
+                                <th>Összeg</th>
+                                <th>Határidő</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Autó</td>
+                                <td>3.000.000</td>
+                                <td>2024.12.31.</td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="chat-client">
+    <button class="chat-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M280-240q-17 0-28.5-11.5T240-280v-80h520v-360h80q17 0 28.5 11.5T880-680v600L720-240H280ZM80-280v-560q0-17 11.5-28.5T120-880h520q17 0 28.5 11.5T680-840v360q0 17-11.5 28.5T640-440H240L80-280Zm520-240v-280H160v280h440Zm-440 0v-280 280Z"/></svg>
+        <div style="padding-left: 10px;">Chat</div>
+    </button>
+</div>

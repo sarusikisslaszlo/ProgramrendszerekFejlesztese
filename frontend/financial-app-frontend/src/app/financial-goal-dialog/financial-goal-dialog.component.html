@@ -1,0 +1,35 @@
+<div class="dialog-wrapper">
+    <div style="margin-bottom: 2rem; display: flex; justify-content: space-between;">
+        <div>
+            <span class="card-text">Pénzügyi cél felvitele</span>
+        </div>
+        <div (click)="closeDialog()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#5f6368"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
+        </div>
+    </div>
+    <div>
+        <form [formGroup]="financialGoalForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="input-label">Név</label>
+                <div class="input-wrapper">
+                    <input formControlName="name" class="expense-input" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="input-label">Összeg</label>
+                <div class="input-wrapper">
+                    <input formControlName="amount" class="expense-input" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="input-label">Határidő</label>
+                <div class="input-wrapper">
+                    <input formControlName="deadline" class="expense-input" />
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 3rem;">
+                <button class="general-button" type="submit">Felvitel</button>
+            </div>
+        </form>
+    </div>
+</div>

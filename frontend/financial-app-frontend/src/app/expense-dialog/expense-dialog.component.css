@@ -1,0 +1,56 @@
+.expense-dialog-container {
+    border-radius: 32px;
+}
+
+.input-wrapper {
+    max-width: 296px;
+    display: flex;
+    width: 100%;
+}
+
+.expense-input {
+    border-radius: 24px;
+    border-width: 1px;
+    box-sizing: border-box;
+    color: #1b1f27;
+    font: 700 16px / 1.5 Source Sans Pro;
+    height: 48px;
+    padding: 12px 0 12px 24px;
+    width: 100%;
+    border: 1px solid #8e939f;
+}
+
+.form-group {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.dialog-wrapper {
+    padding: 2rem;
+}
+
+.card-text {
+    color: #1b1f27;
+    font: 700 20px / 1.6 Source Sans Pro, sans-serif;
+}
+
+.input-label {
+    display: inline-block;
+    padding-top: 11px;
+    vertical-align: middle;
+    width: 130px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.general-button {
+    background-color: #52ae30;
+    border-radius: 32px;
+    color: #fff;
+    font: 700 16px / 1.5 Source Sans Pro, Arial, sans-serif;
+    padding: 12px 32px;
+    border: none;
+}

@@ -1,0 +1,64 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 64px 92px;
+    gap: 10px;
+}
+
+.login-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.login-form .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.login-form button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+    width: 100%;
+    color: white;
+    padding: 10px;
+}
+
+.login-form button:hover {
+    background-color: rgb(50, 74, 120);
+}
+
+.login-form button[type="button"] {
+    background-color: rgb(101, 231, 101);
+}
+
+.login-form button[type="button"]:hover {
+    background-color: rgb(57, 129, 57);
+}
+
+.form-width {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.card-text {
+    color: #1b1f27;
+    font: 700 20px / 1.6 Source Sans Pro, sans-serif;
+}

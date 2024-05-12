@@ -1,0 +1,169 @@
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #bbbbbb;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.table-container {
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 24px;
+    background-color: rgb(237, 100, 100);
+    width: 80%;
+    color: #fff;
+    font: 700 16px / 1.5 Source Sans Pro, Arial, sans-serif;
+    padding: 12px 32px;
+}
+
+.login-form button:hover {
+    background-color: rgb(117, 54, 54);
+}
+
+.bg-color {
+    background-color: #eceff6;
+}
+
+.content-wrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+.general-button {
+    background-color: #52ae30;
+    border-radius: 24px;
+    color: #fff;
+    font: 700 16px / 1.5 Source Sans Pro, Arial, sans-serif;
+    padding: 12px 32px;
+}
+
+.expenses-card {
+    border-radius: 32px;
+    padding: 40px 32px;
+    background-color: #fff;
+    width: 70%;
+    box-shadow: 0 16px 48px rgba(73, 92, 136, .15);
+}
+
+.expenses-card-small {
+    border-radius: 32px;
+    padding: 40px 32px;
+    background-color: #fff;
+    width: 40%;
+    box-shadow: 0 16px 48px rgba(73, 92, 136, .15);
+}
+
+.card-text {
+    color: #1b1f27;
+    font: 700 20px / 1.6 Source Sans Pro, sans-serif;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mt-5 {
+    margin-top: 2rem;
+}
+
+.mb-5 {
+    margin-bottom: 2rem;
+}
+
+#chat-client {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #151617;
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    z-index: 9998;
+    padding: 0 16px 16px 0;
+    align-items: center;
+}
+
+.chat-button {
+    border-radius: 32px 32px 8px 32px;
+    bottom: auto;
+    left: auto;
+    max-height: 100%;
+    max-width: 45px;
+    min-width: 140px;
+    position: relative;
+    right: auto;
+    top: auto;
+    background-color: #1b82e3;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.expense-item-button {
+    background-color: #fff;
+    font: 700 16px / 1.6 Source Sans Pro, sans-serif;
+    color: #1b1f27;
+    border: 1px solid #1b1f2712;
+    box-shadow: 0 16px 48px rgba(73, 92, 136, .15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.custom-table {
+    border-collapse: collapse; /* Merge borders between cells */
+    width: 100%;
+    text-align: center;
+}
+
+.custom-table th,
+.custom-table td {
+    border: none; /* Lighter separator between rows */
+    padding: 8px;
+    text-align: center;
+}
+
+.custom-table thead {
+    background-color: white !important;
+}
+
+.custom-table th {
+    background-color: transparent;
+}
+
+.custom-table thead th {
+    border-bottom: 2px solid #000; /* Stronger separator between thead and tbody */
+}
+
+.button-without-decoration {
+    background-color: transparent;
+}
+
+.expense-dialog-container {
+    border-radius: 32px;
+}
