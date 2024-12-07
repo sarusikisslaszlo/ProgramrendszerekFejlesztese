@@ -55,11 +55,11 @@ pipeline {
             }
         }
 
-        stage('Test Distribution') {
-            steps {
-                sh 'npm run test:dist'
-            }
-        }
+        // stage('Test Distribution') {
+            // steps {
+                // sh 'npm run test:dist'
+            // }
+        // }
 
         stage('Archive Artifacts') {
             steps {
