@@ -61,11 +61,11 @@ pipeline {
             // }
         // }
 
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'dist/**/*', fingerprint: true
-            }
-        }
+        // stage('Archive Artifacts') {
+            // steps {
+                // archiveArtifacts artifacts: 'dist/**/*', fingerprint: true
+            // }
+        // }
 
         stage('Deploy') {
             when {
