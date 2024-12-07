@@ -20,7 +20,7 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    return this.http.post('http://localhost:5001/app/login', body, {headers: headers, withCredentials: true});
+    return this.http.post('/app/login', body, {headers: headers, withCredentials: true});
   }
 
   register(user: User) {
@@ -36,14 +36,14 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    return this.http.post('http://localhost:5001/app/register', body, {headers: headers});
+    return this.http.post('/app/register', body, {headers: headers});
   }
 
   logout() {
-    return this.http.post('http://localhost:5001/app/logout', {}, {withCredentials: true, responseType: 'text'});
+    return this.http.post('/app/logout', {}, {withCredentials: true, responseType: 'text'});
   }
 
   checkAuth() {
-    return this.http.get<boolean>('http://localhost:5001/app/checkAuth', {withCredentials: true});
+    return this.http.get<boolean>('/app/checkAuth', {withCredentials: true});
   }
 }

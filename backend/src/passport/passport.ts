@@ -22,7 +22,7 @@ export const configurePassport = (passport: PassportStatic): PassportStatic => {
                     if (error) {
                         done('Incorrect username ot password.');
                     } else {
-                        done(null, user._id);
+                        done(null, user);
                     }
                 });
             } else {

@@ -6,6 +6,7 @@ import { FinancialGoal } from '../model/FinancialGoal';
 import { SavingsGoal } from '../model/SavingsGoal';
 import { ExpenseIncome } from '../model/IncomeExpense';
 import { Message } from '../model/Message';
+import { log } from 'console';
 
 export const configureRoutes = (passport: PassportStatic, router: Router): Router => {
 
@@ -107,6 +108,7 @@ export const configureRoutes = (passport: PassportStatic, router: Router): Route
     });
 
     router.get('/getAllUsers', (req: Request, res: Response) => {
+        console.log("In")
         if (req.isAuthenticated()) {
             const query = User.find();
             query.then(data => {

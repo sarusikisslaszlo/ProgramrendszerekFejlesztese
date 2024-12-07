@@ -10,16 +10,16 @@ import { configureRoutes } from './routes/routes';
 
 const app = express();
 const port = 5001;
-const dbUrl = 'mongodb://localhost:27017/financial_app_db';
+const mongoURI = process.env.MONGO_URI || "mongodb://mongodb:27017/financial_app_db";
 
-mongoose.connect(dbUrl).then((_) => {
+mongoose.connect(mongoURI).then((_) => {
     console.log('Successfully connected to MongoDB.')
 }).catch(error => {
     console.log(error);
     return;
 })
 
-const whitelist = ['*', 'http://localhost:4200'];
+const whitelist = ['*', 'http://localhost:80'];
 const corsOptions = {
     origin: (origin: string | undefined, callback: (err: Error | null, allowed?: boolean) => void) => {
         if (whitelist.indexOf(origin!) !== -1 || whitelist.includes('*')) {
@@ -56,3 +56,5 @@ app.listen(port, () => {
 })
 
 console.log('After server is ready.');
+
+export default app;
