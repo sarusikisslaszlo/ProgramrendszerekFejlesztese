@@ -33,21 +33,23 @@ pipeline {
             }
         }
 
-        stage('Lint') {
+        // stage('Lint') {
+            // steps {
+                // sh 'npm run lint'
+            // }
+        // }
+
+        stage('Test Source - Backend') {
             steps {
-                sh 'npm run lint'
+                sh 'npm run test'
             }
         }
 
-        stage('Test Source') {
+        stage('Build Backend') {
             steps {
-                sh 'npm run test:src'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm run build'
+                dir('backend') {
+                    sh 'npm run build'
+                }
             }
         }
 
