@@ -8,6 +8,11 @@ pipeline {
     environment {
         GITHUB_REPO = 'https://github.com/sarusikisslaszlo/ProgramrendszerekFejlesztese.git'
         BRANCH = 'master'
+        KUBE_CONFIG = credentials('kubeconfig')
+        DOCKER_REGISTRY = 'docker.io'
+        DOCKER_IMAGE_BACKEND = 'sarusikisslaszlo/backend'
+        DOCKER_IMAGE_FRONTEND = 'sarusikisslaszlo/frontend'
+        K8S_NAMESPACE = 'devops-project'
     }
 
     stages {
@@ -51,6 +56,46 @@ pipeline {
             steps {
                 dir('backend') {
                     sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    sh """
+                        docker build -t ${DOCKER_IMAGE_BACKEND}:latest ./backend
+                        docker build -t ${DOCKER_IMAGE_FRONTEND}:latest ./frontend/financial-app-frontend
+                    """
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                withDockerRegistry([credentialsId: 'dockerhub-credentials', url: "https://${DOCKER_REGISTRY}"]) {
+                    sh """
+                        docker push ${DOCKER_IMAGE_BACKEND}:latest
+                        docker push ${DOCKER_IMAGE_FRONTEND}:latest
+                    """
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            environment {
+                KUBECONFIG = credentials('kubeconfig')
+            }
+            steps {
+                script {
+                    sh """
+                        kubectl config use-context my-k8s-cluster
+                        kubectl apply -f k8s/namespace.yaml
+                        kubectl apply -f k8s/backend-deployment.yaml
+                        kubectl apply -f k8s/frontend-deployment.yaml
+                        kubectl rollout status deployment/backend -n ${K8S_NAMESPACE}
+                        kubectl rollout status deployment/frontend -n ${K8S_NAMESPACE}
+                    """
                 }
             }
         }
