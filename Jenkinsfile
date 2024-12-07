@@ -41,7 +41,9 @@ pipeline {
 
         stage('Test Source - Backend') {
             steps {
-                sh 'npm run test'
+                dir('backend') {
+                    sh 'npm run test'
+                }
             }
         }
 
