@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         nodejs 'NodeJS 20' 
+        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
     }
 
     environment {
