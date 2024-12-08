@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest'
+            args '--privileged -u root'
+        }
+    }
 
     tools {
         nodejs 'NodeJS 20' 
