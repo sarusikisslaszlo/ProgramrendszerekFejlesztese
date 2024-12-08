@@ -8,7 +8,6 @@ pipeline {
 
     tools {
         nodejs 'NodeJS 20' 
-        docker 'docker'
     }
 
     environment {
