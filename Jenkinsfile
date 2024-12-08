@@ -26,9 +26,7 @@ pipeline {
                 sh 'docker --version'
             }
         }
-    }
 
-    stages {
         stage('Checkout') {
             steps {
                 git branch: env.BRANCH, url: env.GITHUB_REPO
