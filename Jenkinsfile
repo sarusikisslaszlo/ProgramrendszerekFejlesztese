@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         nodejs 'NodeJS 20' 
-        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+        docker 'docker'
     }
 
     environment {
@@ -14,6 +14,14 @@ pipeline {
         DOCKER_IMAGE_BACKEND = 'sarusikisslaszlo/backend'
         DOCKER_IMAGE_FRONTEND = 'sarusikisslaszlo/frontend'
         K8S_NAMESPACE = 'devops-project'
+    }
+
+    stages {
+        stage('Check Docker Version') {
+            steps {
+                sh 'docker --version'
+            }
+        }
     }
 
     stages {
